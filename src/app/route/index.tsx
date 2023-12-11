@@ -1,6 +1,7 @@
 import { Suspense, lazy } from "react"
 import { RouterProvider, createBrowserRouter } from "react-router-dom"
 import Home from "@/pages/Home"
+import APITest from "@/pages/APITest"
 
 /**
  * react-router-dom v6
@@ -16,12 +17,16 @@ const Router = () => {
             element: <Home />,
         },
         {
-            path: "/top",
+            path: "/lazyHome",
             element: (
                 <Suspense fallback={"...Loading"}>
                     <LazyHome />
                 </Suspense>
             ),
+        },
+        {
+            path: "/apiTest",
+            element: <APITest />,
         },
     ])
 

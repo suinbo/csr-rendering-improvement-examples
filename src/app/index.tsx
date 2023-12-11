@@ -1,7 +1,13 @@
 import Router from "@/route"
+import { QueryClient, QueryClientProvider } from "react-query"
 
 const App = () => {
-    return <Router />
+    const queryClient = new QueryClient()
+    return (
+        <QueryClientProvider client={queryClient}>
+            <Router />
+        </QueryClientProvider>
+    )
 }
 
 export default App

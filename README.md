@@ -8,7 +8,8 @@
 
 ### Main Plugins
 
--   [react-router-dom] - v.6.20.1
+-   [react-router-dom] - Routing (v.6.20.1)
+-   [react-query] - Data caching & Auto fetch (v.3.39.3)
 
 ### Development
 
