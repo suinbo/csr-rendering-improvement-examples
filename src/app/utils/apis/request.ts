@@ -46,7 +46,6 @@ export const apiRequest = async (endpoint: string) => {
 export const useFetch = (config: UseQueryOptions) => {
     return useQuery({
         ...config,
-        suspense: true,
         refetchOnWindowFocus: false,
     })
 }
