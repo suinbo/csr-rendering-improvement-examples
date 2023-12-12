@@ -1,4 +1,4 @@
-import { UseQueryOptions, useQuery } from "react-query"
+import { UseQueryOptions, useQueries, useQuery } from "react-query"
 import { HTTP_METHOD_GET, HTTP_METHOD_POST, SPOTIFY_API_URL } from "./request.const"
 
 /**
@@ -46,6 +46,21 @@ export const apiRequest = async (endpoint: string) => {
 export const useFetch = (config: UseQueryOptions) => {
     return useQuery({
         ...config,
+        suspense: true,
         refetchOnWindowFocus: false,
     })
+}
+
+/**
+ * Custom Hook
+ * @description useQueries 훅 래핑
+ */
+export const useFetches = (configs: UseQueryOptions[]) => {
+    return useQueries(
+        configs.map(config => ({
+            ...config,
+            suspense: true,
+            refetchOnWindowFocus: false,
+        }))
+    )
 }

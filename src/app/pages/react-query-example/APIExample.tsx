@@ -1,4 +1,4 @@
-import { apiRequest, useFetch } from "@/utils/apis/request"
+import { apiRequest, useFetches } from "@/utils/apis/request"
 import { useEffect, useState } from "react"
 
 const APIExample = () => {
@@ -6,21 +6,18 @@ const APIExample = () => {
 
     useEffect(() => setHasToken(localStorage.getItem("accessToken") as string), [])
 
-    const { data: category, isLoading: isCategoryLoading } = useFetch({
-        queryKey: ["CATEGORY"],
-        queryFn: () => apiRequest("/browse/categories?country=KR"),
-        enabled: !!hasToken,
-    })
-
-    const { data: albums, isLoading: isAlbumLoading } = useFetch({
-        queryKey: ["ALBUM"],
-        queryFn: () => apiRequest("/albums/4aawyAB9vmqN3uQ7FjRGTy"),
-        enabled: !!hasToken,
-    })
-
-    if (isCategoryLoading || isAlbumLoading) {
-        return <>...Loading</>
-    }
+    const { data } = useFetches([
+        {
+            queryKey: ["CATEGORY"],
+            queryFn: () => apiRequest("/browse/categories?country=KR"),
+            enabled: !!hasToken,
+        },
+        {
+            queryKey: ["ALBUM"],
+            queryFn: () => apiRequest("/albums/4aawyAB9vmqN3uQ7FjRGTy"),
+            enabled: !!hasToken,
+        },
+    ])
 
     return <>{}</>
 }

@@ -46,13 +46,15 @@ yarn dev
     -   **[문제]** 선언적 로딩 처리를 위해 두 개의 useQuery에 `suspense: true` 옵션을 추가하면 API 가 순차적으로 호출 되는데,  
         호출하는 API 수가 늘어날수록 화면 렌더링 끝나는 시점이 느려짐 (비효율)
 
-        -   **[분석 1]** 두 개의 useQuery에 `suspense: true` 옵션을 추가하면 (선언적 로딩 처리 시),  
+        -   **[분석 1]**  
+            두 개의 useQuery에 `suspense: true` 옵션을 추가하면 (선언적 로딩 처리 시),  
             첫번째 쿼리가 내부적으로 Promise 를 발생시키고 다른 쿼리가 실행되기 전에 컴포넌트를 일시 중단하여
             순차적으로 API 호출이 발생
 
-            ![![Alt text](image.png)](src/assets/image.png)
+            ![![Alt text](image.png)](src/assets/image1.png)
 
-        -   **[분석 2]** 두 개의 useQuery에 `suspense: true` 옵션을 제거하면 병렬적 API 호출이 가능하나,  
+        -   **[분석 2]**  
+            두 개의 useQuery에 `suspense: true` 옵션을 제거하면 병렬적 API 호출이 가능하나,  
             API 호출 시 로딩처리에 대한 부가적인 로직이 필요함. (선언적 로딩 처리 불가)
 
             ```
@@ -65,3 +67,11 @@ yarn dev
             ```
 
     -   **[성능 개선]**
+
+        -   **[방법 1]**  
+            useQueries 훅을 이용하여 useQuery 훅에 전달하던 매개변수들을 배열형태로 전달
+            => 병렬 API 요청
+
+            ![![Alt text](image.png)](src/assets/image2.png)
+
+        -   **[방법 2]**
