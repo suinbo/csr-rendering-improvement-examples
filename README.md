@@ -19,7 +19,7 @@ will be run at local-environment
 yarn dev
 ```
 
-### Note
+### Setting
 
 -   Node.js 모듈 사용시
 
@@ -34,3 +34,22 @@ yarn dev
     ```
 
     -   @types/node 패키지 설치: `npm install --save-dev @types/node`
+
+### Note
+
+```
+웹에서 렌더링 및 로딩 시 발생하는 성능 저하 문제에 대해 분석하고 개선 방법을 찾아본다.
+```
+
+1.  react-query를 할용하여 하나의 컴포넌트에서 여러 개의 데이터 호출하는 경우
+
+    -   **[문제]** 선언적 로딩 처리를 위해 두 개의 useQuery에 `suspense: true` 옵션을 추가하면 API 가 순차적으로 호출 되는데,  
+        호출하는 API 수가 늘어날수록 화면 렌더링 끝나는 시점이 느려짐 (비효율)
+
+        -   **[분석]** 두 개의 useQuery에 `suspense: true` 옵션을 추가하면 (선언적 로딩 처리 시),  
+            첫번째 쿼리가 내부적으로 Promise 를 발생시키고 다른 쿼리가 실행되기 전에 컴포넌트를 일시 중단하여
+            순차적으로 API 호출이 발생
+
+            ![![Alt text](image.png)](src/assets/image.png)
+
+    -   **[성능 개선]**

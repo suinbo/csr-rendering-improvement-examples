@@ -1,7 +1,9 @@
-import { fetchToken } from "@/utils/api/getToken"
+import { fetchToken } from "@/utils/apis/request"
 import { useQuery } from "react-query"
+import { useNavigate } from "react-router-dom"
 
-const APITest = () => {
+const TokenStore = () => {
+    const navigate = useNavigate()
     const { data: token, isLoading, isError } = useQuery("token", fetchToken)
 
     if (isLoading) {
@@ -13,10 +15,11 @@ const APITest = () => {
     }
 
     if (token) {
+        navigate("/api-test")
         localStorage.setItem("accessToken", token)
     }
 
     return <></>
 }
 
-export default APITest
+export default TokenStore

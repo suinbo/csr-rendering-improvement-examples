@@ -1,7 +1,8 @@
 import { Suspense, lazy } from "react"
 import { RouterProvider, createBrowserRouter } from "react-router-dom"
 import Home from "@/pages/Home"
-import APITest from "@/pages/APITest"
+import TokenStore from "@/pages/react-query-example/TokenStore"
+import APIExample from "@/pages/react-query-example/APIExample"
 
 /**
  * react-router-dom v6
@@ -17,7 +18,7 @@ const Router = () => {
             element: <Home />,
         },
         {
-            path: "/lazyHome",
+            path: "/lazy-home",
             element: (
                 <Suspense fallback={"...Loading"}>
                     <LazyHome />
@@ -25,8 +26,12 @@ const Router = () => {
             ),
         },
         {
-            path: "/apiTest",
-            element: <APITest />,
+            path: "/token",
+            element: <TokenStore />,
+        },
+        {
+            path: "/api-test",
+            element: <APIExample />,
         },
     ])
 
