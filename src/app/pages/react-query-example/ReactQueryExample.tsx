@@ -6,7 +6,7 @@ const APIExample = () => {
 
     useEffect(() => setHasToken(!!localStorage.getItem("accessToken")), [])
 
-    const { data } = useFetches([
+    useFetches([
         {
             queryKey: ["CATEGORY"],
             queryFn: () => apiRequest("/browse/categories?country=KR"),

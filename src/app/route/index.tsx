@@ -2,7 +2,7 @@ import { Suspense, lazy } from "react"
 import { RouterProvider, createBrowserRouter } from "react-router-dom"
 import Home from "@/pages/Home"
 import TokenStore from "@/pages/react-query-example/TokenStore"
-import APIExample from "@/pages/react-query-example/APIExample"
+import ReactQueryExample from "@/pages/react-query-example/ReactQueryExample"
 
 /**
  * react-router-dom v6
@@ -30,8 +30,8 @@ const Router = () => {
             element: <TokenStore />,
         },
         {
-            path: "/api-test",
-            element: <APIExample />,
+            path: "/react-query-test",
+            element: <ReactQueryExample />,
         },
     ])
 

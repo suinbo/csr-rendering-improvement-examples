@@ -73,5 +73,3 @@ yarn dev
             => 병렬 API 요청
 
             ![![Alt text](image.png)](src/assets/image2.png)
-
-        -   **[방법 2]**
