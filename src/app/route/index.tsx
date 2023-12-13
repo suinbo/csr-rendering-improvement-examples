@@ -3,6 +3,8 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom"
 import Home from "@/pages/Home"
 import TokenStore from "@/pages/react-query-example/TokenStore"
 import ReactQueryExample from "@/pages/react-query-example/ReactQueryExample"
+import Skeleton from "@/pages/skeleton"
+import DeferredComponent from "@/pages/skeleton/deferredComponent"
 
 /**
  * react-router-dom v6
@@ -20,7 +22,12 @@ const Router = () => {
         {
             path: "/lazy-home",
             element: (
-                <Suspense fallback={"...Loading"}>
+                <Suspense
+                    fallback={
+                        <DeferredComponent>
+                            <Skeleton />
+                        </DeferredComponent>
+                    }>
                     <LazyHome />
                 </Suspense>
             ),
