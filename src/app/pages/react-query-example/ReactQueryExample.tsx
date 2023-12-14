@@ -1,23 +1,11 @@
-import { apiRequest, useFetches } from "@/utils/apis/request"
-import { useEffect, useState } from "react"
+import { useFetches } from "@/utils/apis/request"
 
 const APIExample = () => {
-    const [hasToken, setHasToken] = useState<boolean>(false)
-
-    useEffect(() => setHasToken(!!localStorage.getItem("accessToken")), [])
-
-    useFetches([
-        {
-            queryKey: ["CATEGORY"],
-            queryFn: () => apiRequest("/browse/categories?country=KR"),
-            enabled: hasToken,
+    useFetches(["/v1/browse/categories?country=KR", "/v1/albums/4aawyAB9vmqN3uQ7FjRGTy"], {
+        onSuccess: res => {
+            console.log(res)
         },
-        {
-            queryKey: ["ALBUM"],
-            queryFn: () => apiRequest("/albums/4aawyAB9vmqN3uQ7FjRGTy"),
-            enabled: hasToken,
-        },
-    ])
+    })
 
     return <></>
 }
