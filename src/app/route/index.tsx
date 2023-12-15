@@ -38,11 +38,7 @@ const Router = () => {
         },
         {
             path: "/react-query-test",
-            element: (
-                <Suspense>
-                    <ReactQueryExample />
-                </Suspense>
-            ),
+            element: <ReactQueryExample />,
         },
     ])
 

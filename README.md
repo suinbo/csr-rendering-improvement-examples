@@ -35,7 +35,7 @@ yarn dev
 
     -   @types/node 패키지 설치: `npm install --save-dev @types/node`
 
-### Note
+### Note 1
 
 ```
 웹에서 렌더링 및 로딩 시 발생하는 성능 저하 문제에 대해 분석하고 개선 방법을 찾아본다.
@@ -74,3 +74,9 @@ yarn dev
             => 병렬 API 요청
 
             ![![Alt text](image.png)](src/assets/image2.png)
+
+### Note 2
+
+1. [react-error-boundary]
+    - 하위 컴포넌트 트리의 어디에서든 자바스크립트 에러를 기록하며 깨진 컴포넌트 트리 대신 폴백 UI를 보여주는 React 컴포넌트
+    - react-query 의 suspsense 와 함께 사용 => `useErrorBoundary : true` (default)
