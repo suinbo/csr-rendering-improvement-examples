@@ -2,10 +2,7 @@ import { useFetch } from "@/utils/apis/request"
 import { Suspense } from "react"
 import { ErrorBoundary } from "react-error-boundary"
 import { sendErrorToErrorTracker } from "./utils"
-
-interface APIData {
-    data: { data: any }
-}
+import { APIData } from "@/utils/apis/response.types"
 
 const APIExample = () => {
     const Content = () => {

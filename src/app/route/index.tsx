@@ -5,6 +5,7 @@ import TokenStore from "@/pages/react-query-example/TokenStore"
 import ReactQueryExample from "@/pages/react-query-example/ReactQueryExample"
 import Skeleton from "@/pages/skeleton"
 import DeferredComponent from "@/pages/skeleton/deferredComponent"
+import ScrollPage from "@/pages/infinite-srcoll/ScrollPage"
 
 /**
  * react-router-dom v6
@@ -39,6 +40,10 @@ const Router = () => {
         {
             path: "/react-query-test",
             element: <ReactQueryExample />,
+        },
+        {
+            path: "/infinite-srcoll",
+            element: <ScrollPage />,
         },
     ])
 

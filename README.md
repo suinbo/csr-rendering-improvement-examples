@@ -78,5 +78,54 @@ yarn dev
 ### Note 2
 
 1. [react-error-boundary]
+
     - 하위 컴포넌트 트리의 어디에서든 자바스크립트 에러를 기록하며 깨진 컴포넌트 트리 대신 폴백 UI를 보여주는 React 컴포넌트
     - react-query 의 suspsense 와 함께 사용 => `useErrorBoundary : true` (default)
+
+2. React-Query의 suspense 옵션을 사용할 때 유의할 점
+
+    - **[케이스]**  
+      useQuery의 `suspense: true` + `onSuccess: res => setState(res)` 할 경우, re-render가 일어나지 않는 것처럼 보임 (즉시 data-fetching 불가)
+
+        ```
+        useQuery<AxiosResponse<any>>(queryKey, () => mswRequest(queryKey), {
+          suspense: true
+          ...,
+          onSuccess: res => {
+              const {
+                  data: { contents },
+              } = res
+
+              setDatas(prev => [...prev, ...contents])
+          },
+        })
+
+        console.log(datas) // API 호출 후에 빈 배열로 출력
+        ```
+
+    - **[분석]**  
+      `suspense: true` 로 data-fetching 시 아래와 같이 동작
+
+        - Suspense mount
+        - (1)`MainComponent mount`
+        - MainComponent에서 useQuery에 있는 api Call
+        - MainComponent unmount, fallback UI인 Loader mount
+        - api Call 응답이 Success일 경우, useQuery에 있는 onSuccess 동작
+        - onSuccess 완료 이후 Loader unmount, (2)`MainComponent mount`
+
+        => setState가 바라보고있는 state는 최초 mount된 (1)MainComponent의 state이고,  
+         변경하고자하는 state는 api Call이 성공한 이후 다시 re-mount된 (2)MainComponent의 state이기 때문
+
+    - **[방법]**
+
+        - (1) React-Query의 메인테이너는 최대한 해당 케이스를 지양하나, 꼭 필요하다면 useEffect를 통해 변경
+
+            ```
+            const { data: resultData } = useTestQuery({
+              suspense: true
+            })
+
+            useEffect(() => {
+              setState(...)
+            }, [resultData])
+            ```

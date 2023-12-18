@@ -44,6 +44,11 @@ export const commonRequest = async (config: ReactQueryConfig) => {
     return await apiRequest(options).then(response => response)
 }
 
+/** msw 이용한 mocking API */
+export const mswRequest = async (key: string) => {
+    return await axios.get("http://localhost:5173/" + key).then(response => response)
+}
+
 /**
  * Spotify Access Token 발급
  * @returns Promise객체
