@@ -3,6 +3,7 @@ import { AxiosResponse } from "axios"
 import { useRef, useState } from "react"
 import { useQuery } from "react-query"
 import styled from "styled-components"
+import { throttle } from "./useThrottle"
 
 type User = {
     id: string
@@ -33,22 +34,19 @@ const ScrollPage = () => {
         },
     })
 
-    // TODO: 스로틀 적용한 Custom 훅 구현
-    const handleScroll = () => {
+    const handleScroll = throttle(() => {
         if (refs.current) {
-            const { scrollTop, clientHeight, scrollHeight } = refs.current
-            const isAtBottom = scrollTop + clientHeight === scrollHeight
-
             /**
              * scrollTop 스크롤바가 아래로 움직일때 가려지는 요소 높이
              * clientHeight 컨텐츠와 패딩을 포함한 영역의 높이 (스크롤바 포함 X)
              * scrollHeight clientHeight + 스크롤 바에 의해 숨겨진 콘텐츠 영역 높이
              */
-            if (isAtBottom) {
-                setPage(page + 1)
-            }
+            const { scrollTop, clientHeight, scrollHeight } = refs.current
+            const isAtBottom = scrollTop + clientHeight === scrollHeight
+
+            if (isAtBottom) setPage(page + 1)
         }
-    }
+    })
 
     return (
         <div>
