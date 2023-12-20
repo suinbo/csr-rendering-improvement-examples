@@ -46,7 +46,7 @@ export const commonRequest = async (config: ReactQueryConfig) => {
 
 /** msw 이용한 mocking API */
 export const mswRequest = async (key: string) => {
-    return await axios.get("http://localhost:5173/" + key).then(response => response)
+    return await axios.get(`${window.location.origin}/` + key).then(response => response)
 }
 
 /**

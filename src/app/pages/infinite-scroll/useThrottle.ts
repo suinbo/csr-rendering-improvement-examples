@@ -1,3 +1,6 @@
+/**
+ * Throttle Custom Hook
+ **/
 export const throttle = (handler: (...args: any[]) => void, timeout = 300) => {
     let lastInvokedTime = 0
     let timer: NodeJS.Timeout
@@ -19,6 +22,9 @@ export const throttle = (handler: (...args: any[]) => void, timeout = 300) => {
     }
 }
 
+/**
+ * rAF Custom Hook
+ **/
 export const throttleByAnimationFrame = (handler: (...args: any[]) => void) =>
     function (this: any, ...args: any[]) {
         requestAnimationFrame(() => {

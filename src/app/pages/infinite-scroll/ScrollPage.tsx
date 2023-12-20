@@ -16,6 +16,7 @@ const Content = styled.div`
     display: flex;
     background: #ebebeb;
 `
+
 const ScrollPage = () => {
     const [page, setPage] = useState(0)
     const [datas, setDatas] = useState<User[]>([])
