@@ -1,4 +1,4 @@
-# CSR 렌더링 및 로딩 성능 개선 예제
+# CSR 환경 렌더링 최적화 예제
 
 ### Environment
 
@@ -40,7 +40,7 @@ yarn dev
 ### [목표]
 
 ```
-웹 렌더링 및 로딩 성능 최적화 방안을 여러 예제를 통해 학습한다.
+CSR 환경에서의 렌더링 최적화 방안을 여러 예제를 통해 학습한다.
 ```
 
 ### [예제]
@@ -80,7 +80,7 @@ yarn dev
 
             ![![Alt text](image.png)](src/assets/image2.png)
 
-2. 무한 스크롤 기능 최적화
+2. Throttling / rAF / Intersection Observer API (Feat. 무한 스크롤)
 
     - (1) **Throttling**
 
