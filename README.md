@@ -253,3 +253,8 @@ Note 1과 관련하여 부가적으로 학습한 내용
                     ...
                 } = useInfiniteQuery(/* ... */)
                 ```
+
+
+## References
+https://tech.kakaopay.com/post/react-router-dom-csr-prefetch/
+
